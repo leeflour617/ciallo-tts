@@ -662,7 +662,7 @@ function updateLoadingProgress(progress, message) {
     }
 }
 
-async function generateVoiceForLongText(segments, currentRequestId, currentSpeakerText) {
+async function generateVoiceForLongText(segments, currentRequestId, speakerText) {
     const results = [];
     const apiName = $('#api').val();
     const apiUrl = API_CONFIG[apiName].url;
@@ -709,7 +709,7 @@ async function generateVoiceForLongText(segments, currentRequestId, currentSpeak
                     const cleanSegmentText = segments[i].replace(/<break\s+time=["'](\d+(?:\.\d+)?[ms]s?)["']\s*\/>/g, '');
                     const shortenedSegmentText = cleanSegmentText.length > 7 ? cleanSegmentText.substring(0, 7) + '...' : cleanSegmentText;
                     const requestInfo = `#${currentRequestId}(${i + 1}/${totalSegments})`;
-                    addHistoryItem(timestamp, currentSpeakerText, shortenedSegmentText, blob, requestInfo);
+                    addHistoryItem(timestamp, speakerText, shortenedSegmentText, blob, requestInfo);
                 }
             } catch (error) {
                 lastError = error;
@@ -741,7 +741,7 @@ async function generateVoiceForLongText(segments, currentRequestId, currentSpeak
         const timestamp = new Date().toLocaleTimeString();
         // 使用传入的讲述人名称，而不是重新获取
         const mergeRequestInfo = `#${currentRequestId}(合并)`;
-        addHistoryItem(timestamp, currentSpeakerText, shortenedText, finalBlob, mergeRequestInfo);
+        addHistoryItem(timestamp, speakerText, shortenedText, finalBlob, mergeRequestInfo);
         return finalBlob;
     }
 
