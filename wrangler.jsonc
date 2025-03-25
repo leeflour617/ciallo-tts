@@ -1,0 +1,8 @@
+{
+  "name": "ciallotts",
+  "compatibility_date": "2025-03-25",
+  "assets": {
+    "directory": ".",
+    "include": ["index.html", "style.css", "Dscript.js", "speakers.json", "headers", "image/**"]
+  }
+}
